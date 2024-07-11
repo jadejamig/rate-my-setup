@@ -6,11 +6,11 @@
   .tab {
     @apply flex flex-col items-center justify-center py-3 px-4 text-sm
   hover:bg-stone-100 dark:hover:bg-dark-300 active:text-white
-  dark:active:text-white active:bg-emerald-500 
+  dark:active:text-white active:bg-emerald-500 dark:text-dark-600
   dark:active:bg-emerald-500 transition-colors duration-200 cursor-pointer;
   }
 
   .rowIcon {
-    @apply flex gap-1 items-center justify-start w-full py-2 px-4  dark:text-dark-600;
+    @apply flex gap-1 items-center justify-center md:justify-start w-full py-2 px-4  dark:text-dark-600;
   }
 }
