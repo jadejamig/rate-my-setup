@@ -29,7 +29,7 @@ const Header = ({ theme, setTheme }: HeaderProps) => {
   return (
     <main className="flex justify-between items-center w-full max-w-3xl bg-white md:rounded-lg py-3 shadow-md dark:bg-dark-200 dark:text-dark-600">
       <div className="flex flex-col items-start justify-center px-6">
-        <p className="text-2xl font-bold tracking-tight">Rate My Setup</p>
+        <p className="text-2xl font-bold  font-montserrat">Rate My Setup</p>
         <p className="text-xs">
           {"By "}
           <a href="https://github.com/jadejamig" target="_blank">

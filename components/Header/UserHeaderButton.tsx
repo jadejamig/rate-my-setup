@@ -57,8 +57,8 @@ export default function UserHeaderButton({ user }: UserHeaderButtonProps) {
       ref={anchorRef}
       onClick={handleToggle}
       className="flex items-center justify-center gap-3 px-4 py-2 rounded-lg hover:bg-stone-100 dark:hover:bg-dark-300 cursor-pointer">
-        <p className="font-medium text-sm hidden sm:block">
-          {user?.displayName?.toLocaleUpperCase()}
+        <p className="font-semibold text-sm hidden sm:block">
+          {user?.displayName?.toLocaleUpperCase() ?? "User"}
         </p>
         {user?.photoURL ? (
           <div className="h-9 w-9 overflow-hidden rounded-full ring ring-emerald-500 ring-offset-base-100">

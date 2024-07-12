@@ -22,6 +22,10 @@ const config: Config = {
         "dark-500": '#717171',
         "dark-600": '#8b8b8b',
       },
+      fontFamily: {
+        'Montserrat': ['Montserrat', 'sans-serif'],
+        'Quicksand': ['Quicksand', 'sans-serif'],
+      }
     },
   },
   plugins: [],
