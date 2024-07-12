@@ -2,6 +2,7 @@ import React from "react";
 import { IconStar, IconMessage, IconFlame } from "@tabler/icons-react";
 import Image from "next/image";
 import { Post } from "@/actions/firestore";
+import { getFirebaseDate } from "@/utils/date";
 
 const ListRow = ({ post }: { post: Post }) => {
   // const photoUrl = 'https://firebasestorage.googleapis.com/v0/b/nextfire-40455.appspot.com/o/images%2FReact.png?alt=media&token=908a4279-205e-4de9-ae3c-c4023cac86de'
@@ -13,7 +14,7 @@ const ListRow = ({ post }: { post: Post }) => {
 
   };
   return (
-    <main className="rowPost font-Quicksand">
+    <main className="rowPost">
       <div className="flex flex-col md:flex-row items-center justify-start gap-4 p-2 h-[450px] md:h-[220px] w-full">
         <div className="relative flex flex-[0.8] md:flex-[0.6] items-center h-[300px] md:h-[220px] w-full justify-center overflow-hidden shadow-md rounded-sm hover:scale-[1.02] duration-500">
           <Image
@@ -28,8 +29,8 @@ const ListRow = ({ post }: { post: Post }) => {
             <p className="text-lg dark:text-dark-600 font-semibold">
               {capitalizeFullName(post.authorName)}
             </p>
-            <p className="text-xs dark:text-dark-500">
-              {new Date().toDateString()}
+            <p className="text-xs dark:text-dark-500 font-Quicksand">
+              {getFirebaseDate(post.createdAt)}
             </p>
           </div>
           <div

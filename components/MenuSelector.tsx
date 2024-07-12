@@ -1,19 +1,17 @@
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import Grow from "@mui/material/Grow";
-import MenuItem from "@mui/material/MenuItem";
-import MenuList from "@mui/material/MenuList";
-import Paper from "@mui/material/Paper";
-import Popper from "@mui/material/Popper";
-import { IconUser } from "@tabler/icons-react";
-import { User } from "firebase/auth";
+import { ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import { signOutUser } from "@/actions/auth";
 
-interface UserHeaderButtonProps {
-  user: User | null;
+type MenuItemProps = {
+  label: string;
+  onClick: () => void;
+};
+
+interface MenuSelectorProps {
+  children: React.ReactNode;
+  menuItems: MenuItemProps[];
 }
 
-export default function UserHeaderButton({ user }: UserHeaderButtonProps) {
+export default function MenuSelector({ children, menuItems }: MenuSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const anchorRef = useRef<HTMLDivElement>(null);
 
@@ -50,24 +48,13 @@ export default function UserHeaderButton({ user }: UserHeaderButtonProps) {
   
       prevOpen.current = isOpen;
     }, [open]);
-
   return (
     <>
       <div
       ref={anchorRef}
       onClick={handleToggle}
-      className="flex items-center justify-center gap-3 px-4 py-2 rounded-lg hover:bg-stone-100 dark:hover:bg-dark-300 cursor-pointer"
       >
-        <p className="font-semibold text-sm hidden sm:block">
-          {user?.displayName?.toLocaleUpperCase() ?? "User"}
-        </p>
-        {user?.photoURL ? (
-          <div className="h-9 w-9 overflow-hidden rounded-full ring ring-emerald-500 ring-offset-base-100">
-            <img className="h-full" src={user.photoURL} alt="profile" />
-          </div>
-        ) : (
-          <IconUser />
-        )}
+        {children}
       </div>
       <Popper
         open={isOpen}
@@ -93,10 +80,14 @@ export default function UserHeaderButton({ user }: UserHeaderButtonProps) {
                   aria-labelledby="composition-button"
                   onKeyDown={handleListKeyDown}
                   className="shadow-lg"
-                >
-                  <MenuItem onClick={async () => await signOutUser()}>
-                    <p className="text-sm">Logout</p>
-                  </MenuItem>
+                > 
+                  {menuItems.map((menuItem) => {
+                    return (
+                      <MenuItem onClick={menuItem.onClick}>
+                        <p className="text-sm">{menuItem.label}</p>
+                      </MenuItem>
+                    )
+                  })}
                 </MenuList>
               </ClickAwayListener>
             </Paper>
